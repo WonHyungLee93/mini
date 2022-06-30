@@ -40,6 +40,14 @@
 
 </table>
 
+<div style="border:1px red solid;">댓글 들어가는곳</div>
+
+<div>
+	<div>
+		댓글입력 : 
+		<input type="text" id="commentContent"> 
+	</div>
+</div>
 
 <input type="button" value="목록"
 style = "margin: 5px;" onclick= "location.href='/SpringProject/board/boardList?pg=${pg}'">
