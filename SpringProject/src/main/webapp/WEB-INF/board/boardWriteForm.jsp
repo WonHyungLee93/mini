@@ -6,6 +6,7 @@
 <meta charset="UTF-8">
 <title>게시글 작성</title>
 <style>
+  .ck-editor__editable { height: 400px; }
 </style>
 </head>
 <body>
@@ -42,6 +43,10 @@
 		</tr>
 	</table>
 </form>
+<script src="https://cdn.ckeditor.com/ckeditor5/34.1.0/classic/ckeditor.js"></script>
+<script src="https://cdn.ckeditor.com/ckeditor5/34.1.0/classic/translations/ko.js"></script>
+<script src="${pageContext.request.contextPath}/js/ckeditor.js"></script>
+
 <script type="text/javascript" src="../js/board_jQuery.js"></script>
 <script type="text/javascript" src="http://code.jquery.com/jquery-3.6.0.min.js"></script>
 </body>
