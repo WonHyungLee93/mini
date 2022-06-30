@@ -56,8 +56,51 @@ $(function(){
 				+$('input[name=seq]').val();
 		
 	});
+	
+	$('#commentBtn').click(function(){
+		$.ajax({
+			url : '/SpringProject/board/commentWrite',
+			type : 'post',
+			data : {'commentContent' : $('#commentContent').val(),
+					'seq' : $('input[name=seq]').val()},
+			success : function(){
+				
+			},
+			error:function(e){
+				console.log(e);
+			}
+				
+		});
+	});
 });
-
+$(function(){
+	$.ajax({
+		url : '/SpringProject/board/commentView',
+		type : 'post',
+		data : 'seq='+$('input[name=seq]').val(),
+		dataType : 'json',
+		success:function(data){
+			alert(JSON.stringify(data));
+			$.each(data.list, function(index, items){
+				$('<tr/>')
+				.append($('<td/>',{
+					align:'center',
+					text: items.nickName
+				})).append($('<td/>',{
+					align:'center',
+					text: items.commentContent
+				})).append($('<td/>',{
+					align:'center',
+					text: items.logtime.toLocaleString()
+				})).appendTo($('#commentInside'));
+			});
+		},
+		error:function(e){
+			console.log(e);
+		}
+	});
+	
+});
 
 
 

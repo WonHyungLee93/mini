@@ -20,4 +20,8 @@ public interface BoardService {
 
 	public Map<String, Object> boardSearch(Map<String, String> map);
 
+	public void commentWrite(Map<String,String> map);
+
+	public Map<String, Object> commentView(Map<String, String> map);
+
 }

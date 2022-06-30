@@ -40,12 +40,16 @@
 
 </table>
 
-<div style="border:1px red solid;">댓글 들어가는곳</div>
+<table style="border:1px red solid;" id="commentInside">
+
+
+</table>
 
 <div>
 	<div>
 		댓글입력 : 
 		<input type="text" id="commentContent"> 
+		<input type="button" id="commentBtn" value="댓글입력">
 	</div>
 </div>
 

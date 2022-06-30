@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import board.service.BoardService;
+import oracle.jdbc.proxy.annotation.Post;
 
 
 @Controller
@@ -108,6 +109,16 @@ public class BoardController {
 		return boardService.boardSearch(map); 
 	}
 	
+	@ResponseBody
+	@PostMapping(value="commentWrite")
+	public void commentWrite(@RequestParam Map<String,String> map){
+		boardService.commentWrite(map);
+	}
 	
+	@ResponseBody
+	@PostMapping(value="commentView")
+	public Map<String,Object> commentView(@RequestParam Map<String,String> map){
+		return boardService.commentView(map);
+	}
 	
 }

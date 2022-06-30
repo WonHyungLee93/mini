@@ -9,6 +9,7 @@ import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
 import board.bean.BoardDTO;
+import board.bean.CommentDTO;
 
 @Repository
 @Transactional
@@ -63,6 +64,23 @@ public class boardDAOMyBatis implements BoardDAO {
 	public int getTotalSearchA(Map<String, String> map) {
 		
 		return sqlSession.selectOne("boardSQL.getTotalSearchA", map);
+	}
+
+
+
+	@Override
+	public void commentWrite(Map<String, String> map) {
+		System.out.println(map.get("nickName")+","+map.get("commentContent")+","+map.get("seq"));
+		sqlSession.insert("boardSQL.commentWrite",map);
+		
+		
+	}
+
+
+
+	@Override
+	public List<CommentDTO> commentView(Map<String, String> map) {
+		return sqlSession.selectList("boardSQL.commentOutput",map);
 	}
 
 }

@@ -105,4 +105,24 @@
 	<select id="getTotalSearchA"  parameterType="java.util.Map" resultType="Int">
 		select count (*) from board where ${searchOption} like '%'||#{keyword}||'%'
 	</select>
+	
+	<insert id="commentWrite" parameterType="java.util.Map">
+		insert into commentText Values(
+			seq_comment.nextval
+			, #{nickName}
+			, #{commentContent}
+			, #{seq}
+			, seq_comment.nextval
+			, 0
+			, 0
+			, 0
+			, 0
+			, 0
+			,sysdate
+	)
+	</insert>
+	
+	<select id="commentOutput" parameterType="java.util.Map" resultType="comment">
+		select * from commentText where boardseq=#{seq}
+	</select>
 </mapper>
