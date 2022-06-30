@@ -51,12 +51,6 @@ body{
 	
 }
 
-#footer{
-	margin-left: 50px;
-	width: 1400px; 
-	height: 10%;
-	background: yellow;
-}
 
 </style>
 
@@ -95,9 +89,6 @@ body{
 		</c:if>
 	</div>
 	
-</div>
-<div id="footer">
-	<p>whProject</p>
 </div>
 </body>
 
