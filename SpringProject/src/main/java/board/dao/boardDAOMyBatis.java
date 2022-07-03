@@ -83,4 +83,10 @@ public class boardDAOMyBatis implements BoardDAO {
 		return sqlSession.selectList("boardSQL.commentOutput",map);
 	}
 
+	@Override
+	public void commentReplyWrite(Map<String, String> map) {
+		sqlSession.insert("boardSQL.commentReplyWrite",map);
+		
+	}
+
 }

@@ -121,4 +121,13 @@ public class BoardController {
 		return boardService.commentView(map);
 	}
 	
+	@PostMapping(value="commentReplyWrite")
+	public void commentReplyWrite(@RequestParam Map<String,String> map) {
+		System.out.println("seq="+map.get("seq"));
+		System.out.println("comment="+map.get("commentContent"));
+		System.out.println("boardseq="+map.get("boardSeq"));
+		
+		boardService.commentReplyWrite(map);
+	}
+	
 }

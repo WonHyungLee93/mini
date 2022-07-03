@@ -64,7 +64,8 @@ $(function(){
 			data : {'commentContent' : $('#commentContent').val(),
 					'seq' : $('input[name=seq]').val()},
 			success : function(){
-				
+				location.href='/SpringProject/board/boardView?seq='
+					+$('input[name=seq]').val()+'&pg='+$('input[name=pg]').val();
 			},
 			error:function(e){
 				console.log(e);
@@ -72,8 +73,7 @@ $(function(){
 				
 		});
 	});
-});
-$(function(){
+	
 	$.ajax({
 		url : '/SpringProject/board/commentView',
 		type : 'post',
@@ -82,17 +82,43 @@ $(function(){
 		success:function(data){
 			alert(JSON.stringify(data));
 			$.each(data.list, function(index, items){
-				$('<tr/>')
-				.append($('<td/>',{
-					align:'center',
-					text: items.nickName
-				})).append($('<td/>',{
-					align:'center',
+				$('<div/>')
+				.append($('<div/>',{
+					align :'lefr',
+					text :items.seq
+				}))
+				.append($('<div/>',{
+				}).append($('<a/>',{
+						href:'#',
+						text:items.nickName,
+						class: 'ninkNameA ninkNameA_'+items.seq
+					}))
+				).append($('<div/>',{
+					align:'left',
 					text: items.commentContent
-				})).append($('<td/>',{
-					align:'center',
+				})).append($('<div/>',{
+					align:'left',
 					text: items.logtime.toLocaleString()
-				})).appendTo($('#commentInside'));
+				}).append($('<input/>',{
+					type : 'button',
+					value : '답글쓰기'
+					}
+					).addClass('commentReplyBtn')
+				)).append($('<hr/>')).appendTo($('#commentInside'));
+				
+				for(i=0; i<items.step; i++){
+					$('.ninkNameA_'+items.seq).before('&emsp;');
+				}
+				
+				if(items.step != 0){
+					$('.ninkNameA_'+items.seq)
+						.before(
+							$('<img/>',{
+								src:'/SpringProject/image/reply.gif'
+								}
+							)
+						)
+				}//if
 			});
 		},
 		error:function(e){
@@ -100,7 +126,42 @@ $(function(){
 		}
 	});
 	
+	$(document).on( "click", ".commentReplyBtn", function() {
+		$('#commentReply').remove();
+		$('#commentReplyWriteBtn').remove();
+		
+		$('<div/>').append($('<input/>',{
+			type:'text',
+			id:'commentReply'
+		})).append($('<input/>',{
+			type:'button',
+			id:'commentReplyWriteBtn',
+			value:'답글작성'
+		}))
+		.appendTo($(this).parent());
+		
+		$('#commentReplyWriteBtn').click(function(){
+			$.ajax({
+				type:'post',
+				url:'/SpringProject/board/commentReplyWrite',
+				data:{
+					'seq' : $(this).parent().parent().prev().prev().prev().html(),
+					'commentContent' : $('#commentReply').val(),
+					'boardSeq' : $('input[name=seq]').val()
+				},
+				
+				success:function(){
+					location.href='/SpringProject/board/boardView?seq='
+						+$('input[name=seq]').val()+'&pg='+$('input[name=pg]').val();
+				},
+				error:function(e){
+					console.log(e);
+				}
+			});//ajax
+		});//댓글 와이트 버튼
+	});
 });
+
 
 
 

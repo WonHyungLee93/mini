@@ -12,7 +12,7 @@
 
 <input type = "hidden" name="seq" value="${seq}"/>
 <input type = "hidden" name="pg" value="${pg}"/>
-
+<input type = "text" id ="commentSeq" value=""/>
 
 
 <table width="600" border="1" bordercolor="black" cellspacing="0" cellpadding="5" frame ="hsides" rules = "rows">
@@ -40,10 +40,9 @@
 
 </table>
 
-<table style="border:1px red solid;" id="commentInside">
+<div style="border:1px red solid;" id="commentInside">
 
-
-</table>
+</div>
 
 <div>
 	<div>

@@ -24,4 +24,6 @@ public interface BoardService {
 
 	public Map<String, Object> commentView(Map<String, String> map);
 
+	public void commentReplyWrite(Map<String, String> map);
+
 }

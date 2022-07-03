@@ -28,6 +28,8 @@ public interface BoardDAO {
 
 	public List<CommentDTO> commentView(Map<String, String> map);
 
+	public void commentReplyWrite(Map<String, String> map);
+
 	
 
 }

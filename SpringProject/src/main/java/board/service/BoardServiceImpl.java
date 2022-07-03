@@ -149,6 +149,13 @@ public class BoardServiceImpl implements BoardService {
 		
 		return sendMap;
 	}
+	@Override
+	public void commentReplyWrite(Map<String, String> map) {
+		String id = (String)session.getAttribute("memId");
+		map.put("nickName" ,id);
+		boardDAO.commentReplyWrite(map);
+		
+	}
 	
 
 }
